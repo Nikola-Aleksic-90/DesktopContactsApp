@@ -5,11 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactsApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
         <StackPanel Margin="10">
             <Button Content="New contact"
                     Click="Button_Click"/>
+
+            <TextBox Margin="0 5 0 5"
+                     TextChanged="TextBox_TextChanged"/>
+
+            <!--Komentar: stavicemo visinu ListView da je 280 jer onda ne mogu stati sva 4 kontakta pa ce kreirati scroll-->
+            <!--Komentar: SelectionChanged i kreiran Event Handler ce otvoriti novi prozor kada se selektuje neki kontakt iz liste-->
+            <ListView x:Name="contactsListView"
+                      SelectionChanged="contactsListView_SelectionChanged"
+                      Height="280"
+                      Margin="0 5 0 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <!--Komentar: za {Binding ...} ne radi InteliSense pa moras rucno da kucas naziv Property-ja--> 
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="20"
+                                       FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Email}"
+                                       FontSize="15"
+                                       Foreground="DodgerBlue"/>
+                            <TextBlock Text="{Binding Phone}"
+                                       FontSize="15"
+                                       FontStyle="Italic"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView> 
         </StackPanel>
     </Grid>
 </Window>
