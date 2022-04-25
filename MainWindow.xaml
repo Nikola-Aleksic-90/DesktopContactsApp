@@ -4,10 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactsApp"
+        
+        xmlns:uc="clr-namespace:DesktopContactsApp.Contols"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
+    
+    <!--Komentar:Nasa kontakt kontrola ne postoji u ovom Namespace-u pa moramo da definisemo gde postoji da bi mogli da mu pristupimo -->
+    <!--Komentar:zbog toga je dodata 8. linija koda, uc je skraceno od User Control -->
+    
     <Grid>
         <StackPanel Margin="10">
+            
             <Button Content="New contact"
                     Click="Button_Click"/>
 
@@ -20,23 +28,19 @@
                       SelectionChanged="contactsListView_SelectionChanged"
                       Height="280"
                       Margin="0 5 0 0">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <!--Komentar: za {Binding ...} ne radi InteliSense pa moras rucno da kucas naziv Property-ja--> 
-                            <TextBlock Text="{Binding Name}"
-                                       FontSize="20"
-                                       FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Email}"
-                                       FontSize="15"
-                                       Foreground="DodgerBlue"/>
-                            <TextBlock Text="{Binding Phone}"
-                                       FontSize="15"
-                                       FontStyle="Italic"/>
-                        </StackPanel>
+                        <uc:ContactControl Contact="{Binding}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView> 
+            
         </StackPanel>
     </Grid>
 </Window>
