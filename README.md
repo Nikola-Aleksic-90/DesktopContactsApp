@@ -17,6 +17,7 @@ U odnosu na prvu C# aplikaciju, ovde je i prikazan osnovni rad sa bazama podatak
 - Dodata je opcija da se neki kontakti izmene i izbrisu iz SQL
 
 25.4.2022
+
 <ListView.ItemTemplate> u XAML u MainWindow je bio preglomazan pa je umesto toga zamenjen. Napravio sam posebnu kontrolu za to koristeci WPF User Control. 
 
 Poboljsanja za UX:
